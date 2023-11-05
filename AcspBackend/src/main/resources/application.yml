@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ACSP Backend
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 80
+logging:
+  level:
+    org.springframework.boot.web.embedded: OFF
+    org.springframework.boot.web.servlet.context: OFF
+    org.apache.catalina: OFF
