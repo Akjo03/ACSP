@@ -1,3 +1,11 @@
 spring:
   application:
     name: ACSP Discord Bot
+  output:
+    ansi:
+      enabled: always
+logging:
+  level:
+    org.springframework.boot.web.embedded: OFF
+    org.springframework.boot.web.servlet.context: OFF
+    org.apache.catalina: OFF
