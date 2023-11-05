@@ -1,13 +1,18 @@
+app:
+  config:
+    client-id: ${BOT_CLIENT_ID}
+    client-secret: ${BOT_CLIENT_SECRET}
+    bot-token: ${BOT_TOKEN}
 spring:
   application:
     name: ACSP Discord Bot
   output:
     ansi:
       enabled: always
+server:
+  port: 80
 logging:
   level:
     org.springframework.boot.web.embedded: OFF
     org.springframework.boot.web.servlet.context: OFF
     org.apache.catalina: OFF
-server:
-  port: 80
