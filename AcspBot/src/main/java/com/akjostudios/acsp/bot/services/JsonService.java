@@ -1,4 +1,4 @@
-package com.akjostudios.acsp.bot.service;
+package com.akjostudios.acsp.bot.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
