@@ -29,7 +29,7 @@ public class AcspBot implements ApplicationRunner {
     private final ApplicationArguments args;
     private final BotEnvironmentProperties properties;
 
-    private JDA instance;
+    private JDA botInstance;
 
     public static void main(String[] args) {
         SpringApplication.run(AcspBot.class, args);
@@ -55,7 +55,7 @@ public class AcspBot implements ApplicationRunner {
         log.info("Exiting ACSP Discord Bot with exit code {}.", exitCode);
         log.info("---------------------------------------------------------------");
 
-        instance.shutdownNow();
+        botInstance.shutdownNow();
         SpringApplication.exit(context, exitCode::getCode);
     }
 
@@ -63,7 +63,7 @@ public class AcspBot implements ApplicationRunner {
         JDABuilder builder = JDABuilder.createDefault(properties.getBotToken());
 
         return Result.from(() -> {
-            instance = builder.build().awaitReady();
+            botInstance = builder.build().awaitReady();
             return ExecutionCode.SUCCESS;
         });
     }
