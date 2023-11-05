@@ -36,6 +36,7 @@ public class AcspBot implements ApplicationRunner {
         if (configProperties.getEnvironment() == null) {
             log.error("Environment not set. Please set the environment using a profile.");
             SpringApplication.exit(context, () -> 1);
+            return;
         }
 
         log.info("Starting ACSP Discord Bot in {} environment...", configProperties.getEnvironment());
