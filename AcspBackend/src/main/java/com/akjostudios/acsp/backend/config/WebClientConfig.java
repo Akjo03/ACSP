@@ -14,11 +14,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
     private final ExternalServiceProperties externalServices;
 
-    @Value("${PORT}")
-    private String port;
-
     @Bean("client.service.bot")
     public WebClient botClient() {
-        return WebClient.create(externalServices.getBotUrl().concat(":").concat(port));
+        return WebClient.create(externalServices.getBotUrl());
     }
 }

@@ -21,7 +21,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @Log4j2
 public class AcspBot implements ApplicationRunner {
     private static ConfigurableApplicationContext context;
-    private static JDA botInstance;
+    @Getter private static JDA botInstance;
 
     private final BotEnvironmentProperties properties;
 

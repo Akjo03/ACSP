@@ -14,11 +14,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
     private final ExternalServiceProperties externalServices;
 
-    @Value("${PORT}")
-    private String port;
-
     @Bean("client.service.backend")
     public WebClient backendClient() {
-        return WebClient.create(externalServices.getBackendUrl().concat(":").concat(port));
+        return WebClient.create(externalServices.getBackendUrl());
     }
 }

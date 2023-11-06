@@ -18,13 +18,12 @@ spring:
 management:
   endpoint:
     health:
+      show-details: always
       probes:
         enabled: true
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: health,info
+      group:
+        readiness:
+          include: readinessState, readinessIndicator
   health:
     diskspace:
       enabled: false
