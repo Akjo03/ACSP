@@ -1,11 +1,33 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] [%logger{15} / %clr(%level)] %message%n</pattern>
         </encoder>
     </appender>
+
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <http>
+            <url>https://logs-prod-012.grafana.net/loki/api/v1/push</url>
+            <auth>
+                <username>675492</username>
+                <password>${LOKI_TOKEN}</password>
+            </auth>
+        </http>
+        <format>
+            <label>
+                <pattern>app=${RAILWAY_SERVICE_NAME},host=${HOSTNAME},level=%level,environment=${RAILWAY_ENVIRONMENT_NAME},logger=%logger</pattern>
+            </label>
+            <message>
+                <pattern>l=%level h=${HOSTNAME} c=%logger{20} t=%thread | %msg %ex</pattern>
+            </message>
+            <sortByTime>true</sortByTime>
+        </format>
+    </appender>
+
     <root level="INFO">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="LOKI" />
     </root>
 </configuration>
