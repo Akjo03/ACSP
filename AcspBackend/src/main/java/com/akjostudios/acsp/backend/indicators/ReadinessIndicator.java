@@ -22,6 +22,12 @@ public class ReadinessIndicator implements ReactiveHealthIndicator {
     }
 
     private @NotNull Mono<Health> checkBotService() {
-        return Mono.just(Health.up().build());
+        return botClient.get().uri("/actuator/health/liveness")
+                .retrieve()
+                .bodyToMono(String.class)
+                .map(liveness -> liveness.contains("UP")
+                        ? Health.up().build()
+                        : Health.down().withDetail("botService", liveness).build()
+                ).onErrorResume(throwable -> Mono.just(Health.down().withDetail("botService", throwable.getMessage()).build()));
     }
 }

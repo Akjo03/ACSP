@@ -1,7 +1,9 @@
 package com.akjostudios.acsp.bot.indicators;
 
+import com.akjostudios.acsp.bot.AcspBot;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.dv8tion.jda.api.JDA;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.ReactiveHealthIndicator;
@@ -34,10 +36,18 @@ public class ReadinessIndicator implements ReactiveHealthIndicator {
     }
 
     private Mono<Health> checkBackendService() {
-        return Mono.just(Health.up().build());
+        return backendClient.get().uri("/actuator/health/liveness")
+                .retrieve()
+                .bodyToMono(String.class)
+                .map(liveness -> liveness.contains("UP")
+                        ? Health.up().build()
+                        : Health.down().withDetail("backendService", liveness).build()
+                ).onErrorResume(throwable -> Mono.just(Health.down().withDetail("backendService", throwable.getMessage()).build()));
     }
 
     private Mono<Health> checkBotReady() {
-        return Mono.just(Health.up().build());
+        return AcspBot.getBotInstance().getStatus().equals(JDA.Status.CONNECTED)
+                ? Mono.just(Health.up().build())
+                : Mono.just(Health.down().withDetail("discordConnection", AcspBot.getBotInstance().getStatus().toString()).build());
     }
 }
