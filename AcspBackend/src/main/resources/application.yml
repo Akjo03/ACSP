@@ -17,6 +17,10 @@ spring:
       password: ${ADMIN_PASSWORD}
 management:
   endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
     health:
       show-details: always
       probes:
@@ -24,6 +28,10 @@ management:
       group:
         readiness:
           include: readinessState, readinessIndicator
+  endpoints:
+    web:
+      exposure:
+        include: [ "health", "info", "prometheus" ]
   health:
     diskspace:
       enabled: false

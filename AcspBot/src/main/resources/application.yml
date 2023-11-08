@@ -24,6 +24,10 @@ management:
       group:
         readiness:
           include: readinessState, readinessIndicator
+  endpoints:
+    web:
+      exposure:
+        include: [ "health", "info", "prometheus" ]
   health:
     diskspace:
       enabled: false
