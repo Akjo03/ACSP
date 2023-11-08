@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <h1 align="center">ACSP</h1>
 <h2 align="center">About</h2>
 <p align="center"><strong>This project is currently in the early development phase.</strong></p>

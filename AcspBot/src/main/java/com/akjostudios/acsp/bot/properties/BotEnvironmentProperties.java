@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "app.config")
 @Getter
 @Setter
+@SuppressWarnings("unused")
 public class BotEnvironmentProperties {
     private BotEnvironment environment;
     private String clientId;
