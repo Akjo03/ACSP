@@ -1,4 +1,4 @@
-package com.akjostudios.acsp.bot.error;
+package com.akjostudios.acsp.bot.web.error;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
