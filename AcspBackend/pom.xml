@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <main.class>com.akjostudios.acsp.backend.AcspBackend</main.class>
+        <main.class>com.akjostudios.acsp.backend.AcspBackendApp</main.class>
 
         <akjolib.version>3.3.0</akjolib.version>
         <jackson.version>2.15.3</jackson.version>

@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <main.class>com.akjostudios.acsp.bot.AcspBot</main.class>
+        <main.class>com.akjostudios.acsp.bot.AcspBotApp</main.class>
 
         <akjolib.version>3.3.0</akjolib.version>
         <jackson.version>2.15.3</jackson.version>
@@ -92,6 +92,12 @@
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>${jda.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>club.minnced</groupId>
+                    <artifactId>opus-java</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

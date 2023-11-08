@@ -16,11 +16,11 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 @RequiredArgsConstructor
 @Getter
 @Log4j2
-public class AcspBackend {
+public class AcspBackendApp {
     private final ApplicationContext context;
     private final ApplicationArguments args;
 
     public static void main(String[] args) {
-        SpringApplication.run(AcspBackend.class, args);
+        SpringApplication.run(AcspBackendApp.class, args);
     }
 }

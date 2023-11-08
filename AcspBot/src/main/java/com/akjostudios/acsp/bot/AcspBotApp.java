@@ -19,14 +19,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 @RequiredArgsConstructor
 @Getter
 @Log4j2
-public class AcspBot implements ApplicationRunner {
+public class AcspBotApp implements ApplicationRunner {
     private static ConfigurableApplicationContext context;
     @Getter private static JDA botInstance;
 
     private final BotEnvironmentProperties properties;
 
     public static void main(String[] args) {
-        context = SpringApplication.run(AcspBot.class, args);
+        context = SpringApplication.run(AcspBotApp.class, args);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class AcspBot implements ApplicationRunner {
         Thread restartThread = new Thread(() -> {
             log.info("Restarting ACSP Discord Bot...");
             context.close();
-            SpringApplication.run(AcspBot.class, context.getBean(ApplicationArguments.class).getSourceArgs());
+            SpringApplication.run(AcspBotApp.class, context.getBean(ApplicationArguments.class).getSourceArgs());
         });
         restartThread.setDaemon(false);
         restartThread.start();
