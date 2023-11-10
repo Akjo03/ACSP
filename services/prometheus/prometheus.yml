@@ -4,14 +4,16 @@ global:
   external_labels:
     monitor: 'acsp-monitor'
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: 'Prometheus'
     static_configs:
       - targets: ['localhost:9090']
-  - job_name: 'acsp-bot'
+  - job_name: 'AcspBot'
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['acspbot:80']
-  - job_name: 'acsp-backend'
+        labels:
+          service: ''
+  - job_name: 'AcspBackend'
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['acspbackend:80']

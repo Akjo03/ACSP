@@ -1,4 +1,4 @@
-package com.akjostudios.acsp.bot.web.indicators;
+package com.akjostudios.acsp.bot.web.indicator;
 
 import com.akjostudios.acsp.bot.AcspBotApp;
 import lombok.RequiredArgsConstructor;

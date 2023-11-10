@@ -1,4 +1,4 @@
-package com.akjostudios.acsp.backend.indicators;
+package com.akjostudios.acsp.backend.indicator;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
