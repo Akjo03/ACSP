@@ -12,7 +12,7 @@
             <url>https://logs-prod-012.grafana.net/loki/api/v1/push</url>
             <auth>
                 <username>675492</username>
-                <password>${GRAFANA_TOKEN}</password>
+                <password>${GRAFANA_LOKI_TOKEN}</password>
             </auth>
         </http>
         <format>

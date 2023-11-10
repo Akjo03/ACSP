@@ -35,6 +35,10 @@ management:
   health:
     diskspace:
       enabled: false
+  metrics:
+    tags:
+      service: ${RAILWAY_SERVICE_NAME}
+      environment: ${RAILWAY_ENVIRONMENT_NAME}
 server:
   port: 80
   address: 0.0.0.0

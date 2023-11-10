@@ -1,5 +1,7 @@
 FROM prom/prometheus:v2.47.2
+ARG GRAFANA_METRICS_TOKEN
 COPY prometheus.yml /etc/prometheus/prometheus.yml
+RUN echo "${GRAFANA_METRICS_TOKEN}" > /etc/prometheus/password.txt
 EXPOSE 9090
 ENTRYPOINT [ "/bin/prometheus" ]
 CMD [ "--config.file=/etc/prometheus/prometheus.yml", \
