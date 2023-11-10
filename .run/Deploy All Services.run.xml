@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Deploy All Services" type="CompoundRunConfigurationType">
+    <toRun name="Deploy Backend" type="ShConfigurationType" />
+    <toRun name="Deploy Bot Locally" type="ShConfigurationType" />
+    <toRun name="Deploy Prometheus" type="ShConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
