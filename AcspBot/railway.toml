@@ -1,0 +1,3 @@
+[deploy]
+healthcheckPath = "/actuator/health/liveness"
+numReplicas = 1
