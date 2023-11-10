@@ -1,9 +1,8 @@
 [build]
 builder = "DOCKERFILE"
-dockerfilePath = "/AcspBot/Dockerfile"
+dockerfilePath = "/services/prometheus/Dockerfile"
 
 [deploy]
-healthcheckPath = "/actuator/health/liveness"
 numReplicas = 1
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 5
