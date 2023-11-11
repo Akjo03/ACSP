@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.ReactiveHealthIndicator;
+import org.springframework.boot.actuate.health.Status;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -26,7 +27,7 @@ public class ReadinessIndicator implements ReactiveHealthIndicator {
                 .retrieve()
                 .bodyToMono(String.class)
                 .map(liveness -> liveness.contains("UP")
-                        ? Health.up().build()
+                        ? Health.up().withDetail("botService", Status.UP).build()
                         : Health.down().withDetail("botService", liveness).build()
                 ).onErrorResume(throwable -> Mono.just(Health.down().withDetail("botService", throwable.getMessage()).build()));
     }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -41,7 +42,8 @@ public class AcspBotApp implements ApplicationRunner {
 
         log.info("Starting ACSP Discord Bot in {} environment...", properties.getEnvironment());
 
-        JDABuilder builder = JDABuilder.createDefault(properties.getBotToken());
+        JDABuilder builder = JDABuilder.createDefault(properties.getBotToken())
+                .setEnabledIntents(GatewayIntent.getIntents(GatewayIntent.ALL_INTENTS));
         botInstance = builder.build().awaitReady();
     }
 

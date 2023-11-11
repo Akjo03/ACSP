@@ -11,8 +11,6 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['acspbot:80']
-        labels:
-          service: ''
   - job_name: 'AcspBackend'
     metrics_path: '/actuator/prometheus'
     static_configs:
