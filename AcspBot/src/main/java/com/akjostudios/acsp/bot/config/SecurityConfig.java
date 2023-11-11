@@ -24,6 +24,7 @@ public class SecurityConfig {
     public SecurityWebFilterChain filterChain(@NotNull ServerHttpSecurity http) {
         return http.authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/actuator/**").permitAll()
+                        .pathMatchers("/favicon.ico").permitAll()
                         .anyExchange().authenticated()
                 ).httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)

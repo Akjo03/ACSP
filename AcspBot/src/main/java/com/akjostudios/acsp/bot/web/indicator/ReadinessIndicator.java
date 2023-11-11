@@ -1,6 +1,6 @@
 package com.akjostudios.acsp.bot.web.indicator;
 
-import com.akjostudios.acsp.bot.AcspBotApp;
+import com.akjostudios.acsp.bot.discord.AcspBot;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;
@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class ReadinessIndicator implements ReactiveHealthIndicator {
+    private final AcspBot acspBot;
+
     @Qualifier("client.service.backend")
     private final WebClient backendClient;
 
@@ -52,8 +54,8 @@ public class ReadinessIndicator implements ReactiveHealthIndicator {
     }
 
     private Mono<Health> checkBotReady() {
-        return AcspBotApp.getBotInstance().getStatus().equals(JDA.Status.CONNECTED)
-                ? Mono.just(Health.up().withDetail("discordConnection", AcspBotApp.getBotInstance().getStatus().toString()).build())
-                : Mono.just(Health.down().withDetail("discordConnection", AcspBotApp.getBotInstance().getStatus().toString()).build());
+        return acspBot.getStatus().equals(JDA.Status.CONNECTED)
+                ? Mono.just(Health.up().withDetail("discordConnection", acspBot.getStatus().toString()).build())
+                : Mono.just(Health.down().withDetail("discordConnection", acspBot.getStatus().toString()).build());
     }
 }
