@@ -1,6 +1,6 @@
 package com.akjostudios.acsp.bot.properties;
 
-import com.akjostudios.acsp.bot.common.BotEnvironment;
+import com.akjostudios.acsp.bot.discord.common.BotEnvironment;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;

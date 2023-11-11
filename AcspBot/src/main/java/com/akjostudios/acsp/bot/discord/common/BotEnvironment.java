@@ -1,4 +1,4 @@
-package com.akjostudios.acsp.bot.common;
+package com.akjostudios.acsp.bot.discord.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

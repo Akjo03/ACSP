@@ -27,6 +27,10 @@ public class AcspBot {
         botInstance = builder.build();
     }
 
+    public JDA.Status getStatus() {
+        return botInstance.getStatus();
+    }
+
     public void shutdown() {
         botInstance.shutdownNow();
     }
