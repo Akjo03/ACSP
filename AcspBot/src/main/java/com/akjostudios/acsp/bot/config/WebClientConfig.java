@@ -2,6 +2,7 @@ package com.akjostudios.acsp.bot.config;
 
 import com.akjostudios.acsp.bot.properties.ExternalServiceProperties;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -18,14 +19,14 @@ public class WebClientConfig {
 
     @Bean("client.httpconnector")
     @Scope("prototype")
-    public ReactorClientHttpConnector httpConnector() {
+    public @NotNull ReactorClientHttpConnector httpConnector() {
         return new ReactorClientHttpConnector(
                 HttpClient.create().followRedirect(true)
         );
     }
 
     @Bean("client.service.backend")
-    public WebClient backendClient() {
+    public @NotNull WebClient backendClient() {
         return WebClient.builder()
                 .baseUrl("https://" + externalServices.getBackendUrl())
                 .clientConnector(httpConnector())

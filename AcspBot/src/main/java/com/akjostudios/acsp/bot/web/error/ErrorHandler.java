@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestControllerAdvice
 public class ErrorHandler {
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<ErrorResponse> handleError(@NotNull ResponseStatusException e, @NotNull ServerHttpRequest request) {
+    public @NotNull ResponseEntity<ErrorResponse> handleError(@NotNull ResponseStatusException e, @NotNull ServerHttpRequest request) {
         return ResponseEntity
                 .status(e.getStatusCode())
                 .body(new ErrorResponse(

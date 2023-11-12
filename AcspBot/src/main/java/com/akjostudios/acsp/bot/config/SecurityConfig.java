@@ -21,7 +21,7 @@ public class SecurityConfig {
     private final ExternalServiceProperties externalServices;
 
     @Bean
-    public SecurityWebFilterChain filterChain(@NotNull ServerHttpSecurity http) {
+    public @NotNull SecurityWebFilterChain filterChain(@NotNull ServerHttpSecurity http) {
         return http.authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/actuator/**").permitAll()
                         .pathMatchers("/favicon.ico").permitAll()
