@@ -30,18 +30,15 @@ public class ReadinessIndicator implements ReactiveHealthIndicator {
         return Flux.merge(
                 checkBackendService(),
                 checkBotReady()
-        ).collectList().map(healths -> healths.stream()
-                .allMatch(health -> health.getStatus().equals(Status.UP))
-                ? Health.up().withDetails(healths.stream()
-                        .flatMap(health -> health.getDetails().entrySet().stream())
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
-                ).build()
-                : Health.down().withDetails(healths.stream()
-                        .filter(health -> !health.getStatus().equals(Status.UP))
-                        .flatMap(health -> health.getDetails().entrySet().stream())
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
-                ).build()
-        );
+        ).collectList().map(healths -> {
+            Map<String, Object> details = healths.stream()
+                    .flatMap(health -> health.getDetails().entrySet().stream())
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v2));
+            return healths.stream()
+                    .anyMatch(health -> health.getStatus().equals(Status.DOWN))
+                    ? Health.down().withDetails(details).build()
+                    : Health.up().withDetails(details).build();
+        });
     }
 
     private @NotNull Mono<Health> checkBackendService() {
