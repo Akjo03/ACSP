@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @SuppressWarnings("unused")
-public class BotEnvironmentProperties {
+public class BotConfigProperties {
     private BotEnvironment environment;
     private String clientId;
     private String clientSecret;

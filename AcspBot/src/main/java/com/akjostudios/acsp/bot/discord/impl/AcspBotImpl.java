@@ -2,7 +2,7 @@ package com.akjostudios.acsp.bot.discord.impl;
 
 import com.akjostudios.acsp.bot.discord.api.AcspBot;
 import com.akjostudios.acsp.bot.discord.common.listener.CommonListener;
-import com.akjostudios.acsp.bot.properties.BotEnvironmentProperties;
+import com.akjostudios.acsp.bot.properties.BotConfigProperties;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -19,7 +19,7 @@ public class AcspBotImpl implements AcspBot {
     private final JDA botInstance;
 
     @Autowired
-    public AcspBotImpl(@NotNull ApplicationContext context, @NotNull BotEnvironmentProperties properties) {
+    public AcspBotImpl(@NotNull ApplicationContext context, @NotNull BotConfigProperties properties) {
         log.info("Starting ACSP Discord Bot in {} environment...", properties.getEnvironment());
 
         JDABuilder builder = JDABuilder.createDefault(properties.getBotToken())

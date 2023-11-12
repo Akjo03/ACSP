@@ -5,6 +5,9 @@ app:
     bot-token: ${BOT_TOKEN}
   services:
     backend-url: ${RAILWAY_SERVICE_ACSPBACKEND_URL}
+  localization:
+    resource-name: BotStrings
+    default-locale: en
 spring:
   application:
     name: ACSP Discord Bot

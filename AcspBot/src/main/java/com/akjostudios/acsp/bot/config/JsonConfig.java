@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @SuppressWarnings("unused")
 public class JsonConfig {
     @Bean
-    public @NotNull ObjectMapper getObjectMapper() {
+    public @NotNull ObjectMapper objectMapper() {
         return new ObjectMapper()
                 .registerModule(new JavaTimeModule())
                 .registerModule(new Jdk8Module())
