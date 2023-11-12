@@ -49,7 +49,7 @@ public class CommonListener implements EventListener {
     @SuppressWarnings("unchecked")
     private <T extends GenericEvent> void invokeListener(@NotNull BotListener<T> listener, @NotNull GenericEvent event, @NotNull BotEventType eventType) {
         log.info("Invoking listener {} for event {}", listener.getClass().getSimpleName(), eventType);
-        try { listener.onEvent((T) event); } catch (Exception e) {
+        try { listener.onEvent(eventType, (T) event); } catch (Exception e) {
             log.error("Error invoking listener {} for event {}", listener.getClass().getSimpleName(), event.getClass().getSimpleName(), e);
         }
     }
