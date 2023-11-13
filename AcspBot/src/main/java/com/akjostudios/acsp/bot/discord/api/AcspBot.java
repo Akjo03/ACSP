@@ -1,8 +1,11 @@
 package com.akjostudios.acsp.bot.discord.api;
 
 import net.dv8tion.jda.api.JDA;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface AcspBot {
-    JDA.Status getStatus();
+    @NotNull JDA.Status getStatus();
     void shutdown();
 }

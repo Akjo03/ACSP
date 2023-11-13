@@ -32,7 +32,7 @@ public class AcspBotImpl implements AcspBot {
     }
 
     @Override
-    public JDA.Status getStatus() {
+    public @NotNull JDA.Status getStatus() {
         return botInstance.getStatus();
     }
 
