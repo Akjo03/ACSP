@@ -14,7 +14,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 @ConfigurationPropertiesScan
 @RequiredArgsConstructor
 @Slf4j
-@SuppressWarnings("unused")
 public class AcspBotApp {
     private final ApplicationContext context;
     private final AcspBot acspBot;
