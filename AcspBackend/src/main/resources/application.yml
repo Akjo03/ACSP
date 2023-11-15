@@ -39,13 +39,14 @@ management:
     tags:
       service: ${RAILWAY_SERVICE_NAME}
       environment: ${RAILWAY_ENVIRONMENT_NAME}
+  info:
+    java:
+      enabled: true
+    env:
+      enabled: true
+    os:
+      enabled: true
 info:
-  java:
-    enabled: true
-  env:
-    enabled: true
-  os:
-    enabled: true
   railway:
     project_name: ${RAILWAY_PROJECT_NAME}
     environment_name: ${RAILWAY_ENVIRONMENT_NAME}
