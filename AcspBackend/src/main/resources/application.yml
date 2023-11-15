@@ -39,6 +39,20 @@ management:
     tags:
       service: ${RAILWAY_SERVICE_NAME}
       environment: ${RAILWAY_ENVIRONMENT_NAME}
+  info:
+    java:
+      enabled: true
+    env:
+      enabled: true
+    os:
+      enabled: true
+    railway:
+      project_name: ${RAILWAY_PROJECT_NAME}
+      environment_name: ${RAILWAY_ENVIRONMENT_NAME}
+      service_name: ${RAILWAY_SERVICE_NAME}
+      service_url: ${RAILWAY_PUBLIC_DOMAIN}
+      replica_id: ${RAILWAY_REPLICA_ID}
+      deployment_id: ${RAILWAY_DEPLOYMENT_ID}
 server:
   port: 80
   address: 0.0.0.0
