@@ -2,8 +2,10 @@ package com.akjostudios.acsp.bot.discord.impl;
 
 import com.akjostudios.acsp.bot.AcspBotApp;
 import com.akjostudios.acsp.bot.discord.api.AcspBot;
+import com.akjostudios.acsp.bot.discord.common.BotEnvironment;
 import com.akjostudios.acsp.bot.discord.common.listener.CommonListener;
 import com.akjostudios.acsp.bot.properties.BotConfigProperties;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -20,11 +22,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class AcspBotImpl implements AcspBot {
+    @Getter private static BotEnvironment environment;
+
     private final JDA botInstance;
 
     @Autowired
     public AcspBotImpl(@NotNull ApplicationContext context, @NotNull BotConfigProperties properties) {
-        log.info("Starting ACSP Discord Bot in {} environment...", properties.getEnvironment());
+        environment = properties.getEnvironment();
+        log.info("Starting ACSP Discord Bot in {} environment...", environment.name());
 
         JDABuilder builder = JDABuilder.createDefault(properties.getBotToken())
                 .setEnabledIntents(GatewayIntent.getIntents(GatewayIntent.ALL_INTENTS))
