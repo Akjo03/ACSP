@@ -8,12 +8,14 @@ import io.github.akjo03.lib.json.JsonPrettyPrinter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 @SuppressWarnings("unused")
 public class JsonConfig {
     @Bean
-    public @NotNull ObjectMapper getObjectMapper() {
+    @Primary
+    public @NotNull ObjectMapper objectMapper() {
         return new ObjectMapper()
                 .registerModule(new JavaTimeModule())
                 .registerModule(new Jdk8Module())

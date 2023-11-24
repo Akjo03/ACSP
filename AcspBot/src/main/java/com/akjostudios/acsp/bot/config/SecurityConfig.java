@@ -1,6 +1,8 @@
 package com.akjostudios.acsp.bot.config;
 
 import com.akjostudios.acsp.bot.properties.ExternalServiceProperties;
+import com.akjostudios.acsp.bot.web.error.ErrorHandler;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +14,8 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 
 @Configuration
 @RequiredArgsConstructor
@@ -20,6 +24,7 @@ import org.springframework.web.cors.CorsConfiguration;
 @EnableReactiveMethodSecurity
 public class SecurityConfig {
     private final ExternalServiceProperties externalServices;
+    private final ObjectMapper objectMapper;
 
     @Bean
     public @NotNull SecurityWebFilterChain filterChain(@NotNull ServerHttpSecurity http) {
@@ -41,12 +46,24 @@ public class SecurityConfig {
                             return corsConfig;
                         })
                 ).exceptionHandling(exceptionHandlingSpec -> exceptionHandlingSpec
-                        .authenticationEntryPoint((exchange, e) -> {
-                            log.error("Unauthorized request to {}: {}", exchange.getRequest().getPath(), e.getMessage());
-                            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-                            return exchange.getResponse().setComplete();
-                        })
+                        .authenticationEntryPoint((exchange, e) -> handleException(exchange, e, HttpStatus.UNAUTHORIZED))
+                        .accessDeniedHandler((exchange, e) -> handleException(exchange, e, HttpStatus.FORBIDDEN))
                 ).build();
+    }
 
+    private Mono<Void> handleException(@NotNull ServerWebExchange exchange, @NotNull Throwable e, @NotNull HttpStatus status) {
+        log.error("Security exception to " + exchange.getRequest().getPath() + " with status " + status, e);
+        exchange.getResponse().setStatusCode(status);
+        try {
+            return exchange.getResponse().writeWith(
+                    Mono.just(exchange.getResponse().bufferFactory().wrap(objectMapper.writeValueAsBytes(new ErrorHandler.ErrorResponse(
+                            e.getMessage(),
+                            Integer.toString(status.value()),
+                            exchange.getRequest().getPath().value()
+                    ))))
+            );
+        } catch (Exception ex) {
+            return exchange.getResponse().setComplete();
+        }
     }
 }
