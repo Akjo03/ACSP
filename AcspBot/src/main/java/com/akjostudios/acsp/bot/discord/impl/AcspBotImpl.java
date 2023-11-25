@@ -19,6 +19,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 @Component
 @Slf4j
 public class AcspBotImpl implements AcspBot {
@@ -50,6 +55,22 @@ public class AcspBotImpl implements AcspBot {
 
     @Override
     public void shutdown(@NotNull ConfigurableApplicationContext context, int delay) {
+        try (
+            ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+            ExecutorService shutdownService = Executors.newVirtualThreadPerTaskExecutor()
+        ) { scheduler.schedule(() -> shutdownService.execute(() -> shutdown(context)), delay, TimeUnit.SECONDS); }
+    }
+
+    @Override
+    public void restart(@NotNull ConfigurableApplicationContext context, int delay) {
+        try (
+                ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+                ExecutorService restartService = Executors.newVirtualThreadPerTaskExecutor()
+        ) { scheduler.schedule(() -> restartService.execute(() -> restart(context)), delay, TimeUnit.SECONDS); }
+    }
+
+    private void shutdown(@NotNull ConfigurableApplicationContext context) {
+        log.info("Shutting down ACSP Discord Bot...");
         boolean shutdownFailed = false;
 
         try (context) { botInstance.shutdownNow(); } catch (Exception ignored) {
@@ -59,8 +80,7 @@ public class AcspBotImpl implements AcspBot {
         if (shutdownFailed) { Runtime.getRuntime().halt(1); }
     }
 
-    @Override
-    public void restart(@NotNull ConfigurableApplicationContext context, int delay) {
+    private void restart(@NotNull ConfigurableApplicationContext context) {
         Thread restartThread = new Thread(() -> {
             log.info("Restarting ACSP Discord Bot...");
             context.close();
