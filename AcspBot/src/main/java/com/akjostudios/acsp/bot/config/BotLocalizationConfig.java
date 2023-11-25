@@ -18,8 +18,8 @@ import java.util.Locale;
 public class BotLocalizationConfig {
     private final BotLocalizationProperties localizationProperties;
 
-    @Primary
     @Bean
+    @Primary
     public LocaleContextResolver localeResolver() {
         AcceptHeaderLocaleContextResolver localeResolver = new AcceptHeaderLocaleContextResolver();
         localeResolver.setDefaultLocale(Locale.of(localizationProperties.getDefaultLocale()));

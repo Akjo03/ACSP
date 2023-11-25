@@ -1,4 +1,4 @@
-package com.akjostudios.acsp.bot.web.indicators;
+package com.akjostudios.acsp.bot.web.health;
 
 import com.akjostudios.acsp.bot.discord.api.AcspBot;
 import lombok.RequiredArgsConstructor;

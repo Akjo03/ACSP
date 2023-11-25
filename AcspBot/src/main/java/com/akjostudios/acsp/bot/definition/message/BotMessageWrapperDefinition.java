@@ -1,4 +1,4 @@
-package com.akjostudios.acsp.bot.settings;
+package com.akjostudios.acsp.bot.definition.message;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,6 +8,8 @@ import lombok.Value;
 @Value
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class BotSettings {
-    String commandPrefix;
+public class BotMessageWrapperDefinition {
+    String label;
+    String locale;
+    BotMessageDefinition message;
 }
