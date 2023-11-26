@@ -31,5 +31,7 @@ public class CommandListener implements BotListener<MessageReceivedEvent> {
 
         String commandName = commandParts.get(0);
         List<String> commandArguments = commandParts.subList(1, commandParts.size());
+
+        log.info("Command {} received from {} with arguments {}", commandName, event.getAuthor().getName(), commandArguments);
     }
 }
