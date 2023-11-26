@@ -1,11 +1,15 @@
 package com.akjostudios.acsp.bot.discord.common.command;
 
-import com.akjostudios.acsp.bot.discord.common.command.definition.BotCommandDefinition;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 @Component
+@FunctionalInterface
 public interface BotCommand {
     void execute(@NotNull CommandContext context);
-    BotCommandDefinition getDefinition();
+
+    default String getName() {
+        return StringUtils.removeEnd(this.getClass().getSimpleName(), "Command").toLowerCase();
+    }
 }
