@@ -1,5 +1,13 @@
 {
   "commandPrefix": "!",
-  "messages": [],
+  "messages": [
+    {
+      "label": "TEST_MESSAGE",
+      "locale": "en",
+      "message": {
+        "content": "This is a test message"
+      }
+    }
+  ],
   "fields": []
 }
