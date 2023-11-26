@@ -52,7 +52,7 @@ public class SecurityConfig {
     }
 
     private Mono<Void> handleException(@NotNull ServerWebExchange exchange, @NotNull Throwable e, @NotNull HttpStatus status) {
-        log.error("Security exception to " + exchange.getRequest().getPath() + " with status " + status, e);
+        log.error("Security exception to " + exchange.getRequest().getPath() + " with status " + status + ": " + e.getMessage());
         exchange.getResponse().setStatusCode(status);
         try {
             return exchange.getResponse().writeWith(
