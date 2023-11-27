@@ -1,6 +1,6 @@
-package com.akjostudios.acsp.bot.definition.field;
+package com.akjostudios.acsp.bot.definition.message.wrapper;
 
-import com.akjostudios.acsp.bot.definition.message.embed.field.BotMessageEmbedFieldDefinition;
+import com.akjostudios.acsp.bot.definition.message.BotMessageDefinition;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -9,8 +9,8 @@ import lombok.Value;
 @Value
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class BotFieldDefinition {
+public class BotMessageWrapperDefinition {
     String label;
     String locale;
-    BotMessageEmbedFieldDefinition field;
+    BotMessageDefinition message;
 }

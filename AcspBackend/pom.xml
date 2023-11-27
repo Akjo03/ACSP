@@ -34,7 +34,7 @@
 
         <main.class>com.akjostudios.acsp.backend.AcspBackendApp</main.class>
 
-        <akjolib.version>3.8.0</akjolib.version>
+        <akjolib.version>3.10.1</akjolib.version>
         <jackson.version>2.15.3</jackson.version>
         <jetbrains.annotations.version>24.0.1</jetbrains.annotations.version>
         <logback.version>1.4.11</logback.version>

@@ -5,9 +5,20 @@
       "label": "TEST_MESSAGE",
       "locale": "en",
       "message": {
-        "content": "This is a test message"
+        "content": "This is a test message",
+        "embeds": []
       }
     }
   ],
-  "fields": []
+  "fields": [
+    {
+      "label": "TEST_FIELD",
+      "locale": "en",
+      "field": {
+        "name": "Test Field",
+        "value": "This is a test field",
+        "inline": false
+      }
+    }
+  ]
 }

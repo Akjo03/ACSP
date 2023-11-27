@@ -25,11 +25,12 @@ public class BotDefinitionConfig {
             @NotNull BotDefinitionValidator botDefinitionValidator
     ) {
         botDefinition = Result.from(() -> objectMapper.readValue(botDefinitionFile.getURL(), BotDefinition.class))
+                .onErrorThrow(error -> new RuntimeException("Failed to load bot definition file", error))
                 .flatMap(botDefinitionValidator::validate)
-                .ifError(error -> log.error("Error while validating bot definition: {}", error.getMessage()))
-                .orElseThrow(() -> new RuntimeException("Error while validating bot definition"));
+                .ifSuccess(definition -> log.info("Bot definition file successfully validated!"))
+                .orElseThrow(error -> new RuntimeException("Failed to validate bot definition file:\n" + error.getMessage()));
     }
 
     @Bean
-    public BotDefinition botDefinition() { return botDefinition; }
+    public @NotNull BotDefinition botDefinition() { return botDefinition; }
 }

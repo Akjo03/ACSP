@@ -1,5 +1,8 @@
 package com.akjostudios.acsp.bot.definition.message.embed;
 
+import com.akjostudios.acsp.bot.definition.message.embed.author.BotMessageEmbedAuthorDefinition;
+import com.akjostudios.acsp.bot.definition.message.embed.field.BotMessageEmbedFieldDefinition;
+import com.akjostudios.acsp.bot.definition.message.embed.footer.BotMessageEmbedFooterDefinition;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -15,7 +18,7 @@ public class BotMessageEmbedDefinition {
     String title;
     String description;
     String url;
-    String color;
+    String color; // Must be converted from hex to decimal
     List<BotMessageEmbedFieldDefinition> fields;
     String imageUrl;
     String thumbnailUrl;
