@@ -15,7 +15,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 @Configuration(proxyBeanMethods = false)
 public class HealthMetricExportConfig {
 
-    @Bean // Could be more concise using a MeterRegistryCustomizer and HealthContributorRegistry but that can create a circular dependency issue
+    @Bean
     public ApplicationListener<ContextRefreshedEvent> healthMetricSetupListener(@NotNull ApplicationContext context) {
         return event -> {
             HealthContributorRegistry healthRegistry = context.getBean(HealthContributorRegistry.class);

@@ -41,6 +41,7 @@
         <loki.logback.version>1.4.2</loki.logback.version>
         <lombok.version>1.18.30</lombok.version>
         <micrometer.prometheus.version>1.11.5</micrometer.prometheus.version>
+        <postgres.version>42.7.0</postgres.version>
         <spring-boot.version>3.1.5</spring-boot.version>
     </properties>
 
@@ -66,7 +67,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
         <dependency>
@@ -89,6 +90,12 @@
             <artifactId>micrometer-registry-prometheus</artifactId>
             <version>${micrometer.prometheus.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
         </dependency>
 
         <dependency>

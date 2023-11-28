@@ -7,10 +7,11 @@ spring:
   output:
     ansi:
       enabled: always
-  data:
-    mongodb:
-      uri: ${MONGO_URL}
-      database: acsp
+  datasource:
+    url: jdbc:postgresql://${ACSP_DB_HOST}:${ACSP_DB_PORT}/${ACSP_DB_NAME}
+    username: ${ACSP_DB_USER}
+    password: ${ACSP_DB_PASS}
+    driver-class-name: org.postgresql.Driver
   security:
     user:
       name: ${ADMIN_USERNAME}

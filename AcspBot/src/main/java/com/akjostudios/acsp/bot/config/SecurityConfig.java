@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.actuate.autoconfigure.security.reactive.EndpointRequest;
 import org.springframework.boot.actuate.health.HealthEndpoint;
+import org.springframework.boot.actuate.metrics.export.prometheus.PrometheusScrapeEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,7 @@ public class SecurityConfig {
     public @NotNull SecurityWebFilterChain filterChain(@NotNull ServerHttpSecurity http) {
         return http.authorizeExchange(exchanges -> exchanges
                         .matchers(EndpointRequest.to(HealthEndpoint.class)).permitAll()
+                        .matchers(EndpointRequest.to(PrometheusScrapeEndpoint.class)).permitAll()
                         .anyExchange().authenticated()
                 ).httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
