@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.boot.actuate.autoconfigure.security.reactive.EndpointRequest;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -29,13 +31,12 @@ public class SecurityConfig {
     @Bean
     public @NotNull SecurityWebFilterChain filterChain(@NotNull ServerHttpSecurity http) {
         return http.authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/actuator/**").permitAll()
+                        .matchers(EndpointRequest.to(HealthEndpoint.class)).permitAll()
                         .pathMatchers("/favicon.ico").permitAll()
                         .anyExchange().authenticated()
                 ).httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .logout(ServerHttpSecurity.LogoutSpec::disable)
-                .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(corsSpec -> corsSpec
                         .configurationSource(request -> {
                             CorsConfiguration corsConfig = new CorsConfiguration();
