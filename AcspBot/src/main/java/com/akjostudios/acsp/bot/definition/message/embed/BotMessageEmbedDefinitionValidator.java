@@ -25,7 +25,7 @@ public class BotMessageEmbedDefinitionValidator implements Validator<BotMessageE
     public Result<BotMessageEmbedDefinition> validate(@NotNull BotMessageEmbedDefinition botMessageEmbedDefinition) {
         ResultAggregator aggregator = new ResultAggregator();
 
-        boolean descriptionExists = botMessageEmbedDefinition.getDescription() != null && !botMessageEmbedDefinition.getDescription().isEmpty();
+        boolean descriptionExists = botMessageEmbedDefinition.getDescription() != null && !botMessageEmbedDefinition.getDescription().isBlank();
         boolean fieldsExists = botMessageEmbedDefinition.getFields() != null && !botMessageEmbedDefinition.getFields().isEmpty();
 
         if (!descriptionExists && !fieldsExists) {
