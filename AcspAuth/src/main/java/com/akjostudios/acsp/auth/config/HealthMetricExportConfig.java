@@ -14,7 +14,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 
 @Configuration(proxyBeanMethods = false)
 public class HealthMetricExportConfig {
-
     @Bean
     public ApplicationListener<ContextRefreshedEvent> healthMetricSetupListener(@NotNull ApplicationContext context) {
         return event -> {
