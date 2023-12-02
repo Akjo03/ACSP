@@ -48,6 +48,7 @@ public class SecurityConfig {
     ) {
         return defaultSecurity(http)
                 .authorizeExchange(exchanges -> exchanges
+                        .pathMatchers("/favicon.ico").permitAll()
                         .anyExchange().authenticated()
                 ).httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .build();
