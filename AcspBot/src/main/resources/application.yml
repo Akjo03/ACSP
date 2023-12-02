@@ -8,6 +8,10 @@ app:
   localization:
     resource-name: BotStrings
     default-locale: en
+  security:
+    prometheus:
+      username: ${PROMETHEUS_USERNAME}
+      password: ${PROMETHEUS_PASSWORD}
 spring:
   application:
     name: ACSP Discord Bot

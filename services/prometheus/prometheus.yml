@@ -11,12 +11,18 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['acspbot:80']
+    basic_auth:
+      username: "acsp_prom_user"
+      password_file: "/etc/prometheus/prometheus_password.txt"
   - job_name: 'AcspBackend'
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['acspbackend:80']
+    basic_auth:
+      username: "acsp_prom_user"
+      password_file: "/etc/prometheus/prometheus_password.txt"
 remote_write:
   - url: "https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom/push"
     basic_auth:
       username: "1152824"
-      password_file: "/etc/prometheus/password.txt"
+      password_file: "/etc/prometheus/grafana_token.txt"

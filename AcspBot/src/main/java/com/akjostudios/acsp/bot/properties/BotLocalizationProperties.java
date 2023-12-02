@@ -7,7 +7,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "app.localization")
 @Getter
 @Setter
-@SuppressWarnings("unused")
 public class BotLocalizationProperties {
     private String resourceName;
     private String defaultLocale;

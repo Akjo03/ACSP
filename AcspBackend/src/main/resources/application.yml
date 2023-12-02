@@ -1,6 +1,10 @@
 app:
   services:
     bot-url: ${RAILWAY_SERVICE_ACSPBOT_URL}
+  security:
+    prometheus:
+      username: ${PROMETHEUS_USERNAME}
+      password: ${PROMETHEUS_PASSWORD}
 spring:
   application:
     name: ACSP Backend
