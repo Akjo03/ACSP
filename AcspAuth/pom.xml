@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.akjostudios.acsp</groupId>
-    <artifactId>AcspBackend</artifactId>
+    <artifactId>AcspAuth</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
-    <name>ACSP Backend</name>
-    <description>The backend for Akjo's Computer Science Program</description>
+    <name>ACSP Auth</name>
+    <description>The authentication/authorization server for Akjo's Computer Science Program</description>
     <inceptionYear>2023</inceptionYear>
 
     <developers>
@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <main.class>com.akjostudios.acsp.backend.AcspBackendApp</main.class>
+        <main.class>com.akjostudios.acsp.auth.AcspAuthApp</main.class>
 
         <akjolib.version>3.10.2</akjolib.version>
         <jackson.version>2.15.3</jackson.version>
@@ -58,6 +58,7 @@
             <artifactId>AkjoLib</artifactId>
             <version>${akjolib.version}</version>
         </dependency>
+
 
         <!--suppress VulnerableLibrariesLocal -->
         <dependency>

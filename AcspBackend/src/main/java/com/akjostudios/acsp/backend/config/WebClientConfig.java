@@ -32,4 +32,12 @@ public class WebClientConfig {
                 .clientConnector(httpConnector())
                 .build();
     }
+
+    @Bean("client.service.auth")
+    public @NotNull WebClient authClient() {
+        return WebClient.builder()
+                .baseUrl("https://" + externalServices.getAuthUrl())
+                .clientConnector(httpConnector())
+                .build();
+    }
 }

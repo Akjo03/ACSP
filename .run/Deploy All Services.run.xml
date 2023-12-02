@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Deploy All Services" type="CompoundRunConfigurationType">
+    <toRun name="Deploy Auth" type="ShConfigurationType" />
     <toRun name="Deploy Backend" type="ShConfigurationType" />
     <toRun name="Deploy Bot" type="ShConfigurationType" />
     <toRun name="Deploy Prometheus" type="ShConfigurationType" />

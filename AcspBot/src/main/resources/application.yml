@@ -5,6 +5,7 @@ app:
     bot-token: ${BOT_TOKEN}
   services:
     backend-url: ${RAILWAY_SERVICE_ACSPBACKEND_URL}
+    auth-url: ${RAILWAY_SERVICE_ACSPAUTH_URL}
   localization:
     resource-name: BotStrings
     default-locale: en

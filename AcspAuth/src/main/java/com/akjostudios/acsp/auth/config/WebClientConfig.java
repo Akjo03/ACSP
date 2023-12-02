@@ -1,6 +1,6 @@
-package com.akjostudios.acsp.bot.config;
+package com.akjostudios.acsp.auth.config;
 
-import com.akjostudios.acsp.bot.properties.ExternalServiceProperties;
+import com.akjostudios.acsp.auth.properties.ExternalServiceProperties;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
@@ -25,18 +25,18 @@ public class WebClientConfig {
         );
     }
 
-    @Bean("client.service.backend")
-    public @NotNull WebClient backendClient() {
+    @Bean("client.service.bot")
+    public @NotNull WebClient botClient() {
         return WebClient.builder()
-                .baseUrl("https://" + externalServices.getBackendUrl())
+                .baseUrl("https://" + externalServices.getBotUrl())
                 .clientConnector(httpConnector())
                 .build();
     }
 
-    @Bean("client.service.auth")
-    public @NotNull WebClient authServiceClient() {
+    @Bean("client.service.backend")
+    public @NotNull WebClient backendClient() {
         return WebClient.builder()
-                .baseUrl("https://" + externalServices.getAuthUrl())
+                .baseUrl("https://" + externalServices.getBackendUrl())
                 .clientConnector(httpConnector())
                 .build();
     }

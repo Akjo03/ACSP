@@ -104,6 +104,7 @@ public class SecurityConfig {
                         .configurationSource(request -> {
                             CorsConfiguration corsConfig = new CorsConfiguration();
                             corsConfig.addAllowedOrigin(externalServices.getBotUrl());
+                            corsConfig.addAllowedOrigin(externalServices.getAuthUrl());
                             corsConfig.addAllowedHeader("*");
                             corsConfig.addAllowedMethod("*");
                             return corsConfig;

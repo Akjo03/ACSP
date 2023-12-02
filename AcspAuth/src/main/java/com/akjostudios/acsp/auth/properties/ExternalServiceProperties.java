@@ -1,4 +1,4 @@
-package com.akjostudios.acsp.bot.properties;
+package com.akjostudios.acsp.auth.properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +8,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 public class ExternalServiceProperties {
+    private String botUrl;
     private String backendUrl;
-    private String authUrl;
 }

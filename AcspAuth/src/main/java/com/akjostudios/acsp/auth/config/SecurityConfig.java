@@ -1,8 +1,8 @@
-package com.akjostudios.acsp.bot.config;
+package com.akjostudios.acsp.auth.config;
 
-import com.akjostudios.acsp.bot.properties.ExternalServiceProperties;
-import com.akjostudios.acsp.bot.properties.SecurityProperties;
-import com.akjostudios.acsp.bot.web.error.ErrorHandler;
+import com.akjostudios.acsp.auth.error.ErrorHandler;
+import com.akjostudios.acsp.auth.properties.ExternalServiceProperties;
+import com.akjostudios.acsp.auth.properties.SecurityProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -103,8 +103,8 @@ public class SecurityConfig {
                 .cors(corsSpec -> corsSpec
                         .configurationSource(request -> {
                             CorsConfiguration corsConfig = new CorsConfiguration();
+                            corsConfig.addAllowedOrigin(externalServices.getBotUrl());
                             corsConfig.addAllowedOrigin(externalServices.getBackendUrl());
-                            corsConfig.addAllowedOrigin(externalServices.getAuthUrl());
                             corsConfig.addAllowedHeader("*");
                             corsConfig.addAllowedMethod("*");
                             return corsConfig;

@@ -1,7 +1,6 @@
 package com.akjostudios.acsp.bot.web.health;
 
 import com.akjostudios.acsp.bot.discord.api.AcspBot;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;
 import org.jetbrains.annotations.NotNull;
@@ -19,16 +18,26 @@ import java.util.stream.Collectors;
 
 @Component
 @Slf4j
-@RequiredArgsConstructor
 public class ReadinessIndicator implements ReactiveHealthIndicator {
     private final AcspBot acspBot;
 
-    @Qualifier("client.service.backend")
     private final WebClient backendClient;
+    private final WebClient authClient;
+
+    public ReadinessIndicator(
+            @NotNull AcspBot acspBot,
+            @Qualifier("client.service.backend") WebClient backendClient,
+            @Qualifier("client.service.auth") WebClient authClient
+    ) {
+        this.acspBot = acspBot;
+        this.backendClient = backendClient;
+        this.authClient = authClient;
+    }
 
     public Mono<Health> health() {
         return Flux.merge(
                 checkBackendService(),
+                checkAuthService(),
                 checkBotReady()
         ).collectList().map(healths -> {
             Map<String, Object> details = healths.stream()
@@ -49,6 +58,16 @@ public class ReadinessIndicator implements ReactiveHealthIndicator {
                         ? Health.up().withDetail("backendService", Status.UP).build()
                         : Health.down().withDetail("backendService", liveness).build()
                 ).onErrorResume(throwable -> Mono.just(Health.down().withDetail("backendService", throwable.getMessage()).build()));
+    }
+
+    private @NotNull Mono<Health> checkAuthService() {
+        return authClient.get().uri("/actuator/health/liveness")
+                .retrieve()
+                .bodyToMono(String.class)
+                .map(liveness -> liveness.contains("UP")
+                        ? Health.up().withDetail("authService", Status.UP).build()
+                        : Health.down().withDetail("authService", liveness).build()
+                ).onErrorResume(throwable -> Mono.just(Health.down().withDetail("authService", throwable.getMessage()).build()));
     }
 
     private @NotNull Mono<Health> checkBotReady() {

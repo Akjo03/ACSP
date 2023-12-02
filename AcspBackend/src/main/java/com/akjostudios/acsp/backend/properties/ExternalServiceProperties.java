@@ -9,4 +9,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 public class ExternalServiceProperties {
     private String botUrl;
+    private String authUrl;
 }

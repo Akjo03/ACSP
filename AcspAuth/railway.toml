@@ -1,0 +1,9 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "/AcspAuth/Dockerfile"
+
+[deploy]
+healthcheckPath = "/actuator/health/liveness"
+numReplicas = 1
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5
